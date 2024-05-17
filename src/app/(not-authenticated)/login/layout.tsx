@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import { NextAuthProvider } from "@/providers/NextAuthProvider";
+import FloatingBadge from '@/components/FloatingBadge';
 
 export const metadata = {
   title: "Login with Spotify",

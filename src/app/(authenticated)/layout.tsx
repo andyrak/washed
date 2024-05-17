@@ -1,5 +1,6 @@
 import "@/app/globals.css";
 import { NextAuthProvider } from "@/providers/NextAuthProvider";
+import FloatingBadge from '@/components/FloatingBadge';
 
 
 export const metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({
                 </main>
               </div>
             </div>
+            <FloatingBadge />
         </body>
       </NextAuthProvider>
     </html>
