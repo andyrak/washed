@@ -3,8 +3,9 @@ import { NextAuthProvider } from "@/providers/NextAuthProvider";
 import FloatingBadge from '@/components/FloatingBadge';
 
 export const metadata = {
-  title: "Login with Spotify",
-  description: "Login page to authenticate through Spotify",
+  title: "Am I Washed?",
+  description: "Login with Spotify to see if your music tastes are washed.",
+  icon: "/favicon.ico",
 };
 
 export default function LoginPageLayout({
