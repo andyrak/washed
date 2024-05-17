@@ -4,13 +4,32 @@ const FloatingBadge = () => {
   return (
     <div className="fixed bottom-0 right-0 z-10 p-4">
       <div className="flex items-center gap-2 p-4 bg-gray-200 dark:bg-zinc-800 rounded-lg shadow-lg">
+      <a
+          className="flex items-center gap-2"
+          href="https://spotify.com"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Powered by{' '}
+          <Image
+            src="/spotify.svg"
+            alt="Spotify Logo"
+            height={100}
+            width={80}
+            priority
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
+        </a>|
+
         <a
           className="flex items-center gap-2"
           href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Runs on{' '}
           <Image
             src="/vercel.svg"
             alt="Vercel Logo"

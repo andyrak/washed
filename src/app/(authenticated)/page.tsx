@@ -73,7 +73,7 @@ export default async function Home() {
                   alt={track.name}
                   width={72}
                   height={72}
-                  className="object-cover h-full rounded-tl-md rounded-bl-md aspect-square"
+                  className="object-cover h-full rounded-md aspect-square"
                   style={{
                     maxWidth: "100%",
                     height: "auto"
