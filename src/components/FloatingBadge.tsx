@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 const FloatingBadge = () => {
   return (
@@ -18,7 +18,10 @@ const FloatingBadge = () => {
             height={100}
             width={70}
             priority
-          />
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
         </a>|
 
         <a
@@ -29,13 +32,16 @@ const FloatingBadge = () => {
         >
             Built by{' '}
             <Image
-            src="/andyrak.jpeg"
-            alt="andyrak on Github"
-            height={32}
-            width={32}
-            className="rounded-full object-cover"
-            priority
-          />
+              src="/andyrak.jpeg"
+              alt="andyrak on Github"
+              height={32}
+              width={32}
+              className="rounded-full object-cover"
+              priority
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
           andyrak
         </a>
       </div>

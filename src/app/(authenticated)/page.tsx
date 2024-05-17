@@ -3,7 +3,7 @@ import { Track } from "@/types/types";
 import { Album } from "lucide-react";
 import { getGreeting, getIsWashed, getWashedPhrase } from "@/utils/clientUtils";
 import { getAuthSession } from "@/utils/serverUtils";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
@@ -74,7 +74,10 @@ export default async function Home() {
                   width={72}
                   height={72}
                   className="object-cover h-full rounded-tl-md rounded-bl-md aspect-square"
-                />
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto"
+                  }} />
               ) : (
                 <Album size={20} />
               )}
