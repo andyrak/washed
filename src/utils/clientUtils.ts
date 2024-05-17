@@ -6,12 +6,12 @@ export const fmtMSS = (seconds: number) => {
     const currentHour = new Date().getHours();
   
     if (currentHour >= 0 && currentHour < 12) {
-      return "Morning";
+      return "morning";
     }
   
     if (currentHour >= 12 && currentHour < 17) {
-      return "Afternoon";
+      return "afternoon";
     }
   
-    return "Evening";
+    return "evening";
   };
