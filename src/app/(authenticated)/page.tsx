@@ -6,7 +6,6 @@ import { getAuthSession } from "@/utils/serverUtils";
 import Image from "next/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { useEffect, useRef } from "react";
 
 export const metadata = {
   title: "Are you washed?",

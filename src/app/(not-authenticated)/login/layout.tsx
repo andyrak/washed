@@ -17,6 +17,7 @@ export default function LoginPageLayout({
       <NextAuthProvider>
         <body className="text-white bg-paper-700">
           <main>{children}</main>
+          <FloatingBadge />
         </body>
       </NextAuthProvider>
     </html>

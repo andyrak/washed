@@ -11,10 +11,10 @@ export default function Login() {
   return (
     <div className="flex flex-col items-center justify-center w-screen h-screen gap-20">
         <Image
-        src="/spotify.svg"
-        alt="spotify logo"
-        width={320}
-        height={96}
+        src="/washed.png"
+        alt="washed logo"
+        width={300}
+        height={300}
         objectFit="contain"
         />
         <button
