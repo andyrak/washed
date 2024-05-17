@@ -50,5 +50,7 @@ export interface Track {
   artists: Artist[];
   duration_ms: number;
   preview_url: string;
-  external_urls: string[];
+  external_urls: {
+    spotify: string;
+  };
 }
