@@ -3,7 +3,7 @@ import { Track } from "@/types/types";
 import { Album } from "lucide-react";
 import { getGreeting, getIsWashed, getWashedPhrase } from "@/utils/clientUtils";
 import { getAuthSession } from "@/utils/serverUtils";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import { redirect } from "next/navigation";
 
