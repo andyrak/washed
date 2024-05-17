@@ -60,8 +60,10 @@ export default async function Home() {
       <div className="mt-6 grid w-full grid-cols-12 gap-4">
         {allTimeTopTracks.map((track) => (
           <Link
-            href={`/tracks/${track.id}`}
+            href={`${track.external_urls['spotify']}`}
             key={track.id}
+            rel="noopener noreferrer" 
+            target="_blank"
             className="flex items-center justify-between col-span-4 pr-4 truncate rounded-md group/item bg-paper-600 hover:bg-paper-400"
           >
             <div className="flex items-center gap-4">
