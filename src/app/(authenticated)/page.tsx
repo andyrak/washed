@@ -64,7 +64,7 @@ export default async function Home() {
             key={track.id}
             rel="noopener noreferrer" 
             target="_blank"
-            className="flex items-center justify-between col-span-4 pr-4 truncate rounded-md group/item bg-paper-600 hover:bg-paper-400"
+            className="flex items-center justify-between col-span-4 pr-4 truncate group/item bg-paper-600 hover:bg-paper-400"
           >
             <div className="flex items-center gap-4">
               {track.album.images.length > 0 ? (
@@ -73,7 +73,7 @@ export default async function Home() {
                   alt={track.name}
                   width={72}
                   height={72}
-                  className="object-cover h-full rounded-md aspect-square"
+                  className="object-cover h-full aspect-square"
                   style={{
                     maxWidth: "100%",
                     height: "auto"
