@@ -2,17 +2,17 @@ import fs from "fs";
 import path from "path";
 
 export const getGreeting = () => {
-  // Get the user's timezone
-  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-  // Get the current date and time in the user's timezone
+  // Get the current date and time
   const now = new Date();
-  const formatter = new Intl.DateTimeFormat('en-US', {
-    hour: 'numeric',
-    hour12: false,
-    timeZone: userTimezone,
-  });
-  const currentHour = parseInt(formatter.format(now), 10);
+
+  // Calculate the UTC time in milliseconds
+  const utcTime = now.getTime() + now.getTimezoneOffset() * 60 * 1000;
+
+  // Get the user's local time in milliseconds
+  const localTime = new Date(utcTime);
+
+  // Extract the current hour in the user's local timezone
+  const currentHour = localTime.getHours();
 
   // Determine the greeting based on the hour
   if (currentHour >= 0 && currentHour < 12) {
@@ -25,6 +25,7 @@ export const getGreeting = () => {
 
   return "evening";
 };
+
 
 const getCongrats = () => {
   const fileContents = fs.readFileSync(
