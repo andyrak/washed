@@ -2,8 +2,23 @@ import fs from "fs";
 import path from "path";
 
 export const fmtMSS = (seconds: number) => {
-  return new Date(seconds).toISOString().substring(15, 15 + 4);
+  // Get the user's timezone
+  const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+  // Convert seconds to milliseconds
+  const milliseconds = seconds * 1000;
+
+  // Create a Date object
+  const date = new Date(milliseconds);
+
+  // Format the time to MM:SS in the user's timezone
+  return new Intl.DateTimeFormat('en-US', {
+    minute: '2-digit',
+    second: '2-digit',
+    timeZone: userTimezone,
+  }).format(date);
 };
+
 
 export const getGreeting = () => {
   const currentHour = new Date().getHours();
