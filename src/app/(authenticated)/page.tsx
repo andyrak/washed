@@ -29,9 +29,15 @@ export default async function Home() {
     (data) => data.display_name
   )) as string;
 
-  const yearDelta = (await getAvgAgeInYears({ tracks: allTimeTopTracks }).then(
-    (data) => data
-  )) as number;
+  const yearDelta = await getAvgAgeInYears({ tracks: allTimeTopTracks }).then(
+    (data) => {
+      if (data === null) {
+        console.error("Unable to calculate the average age in years.");
+        return 0; // Fallback value, can be adjusted based on requirements
+      }
+      return data;
+    }
+  ) as number;
 
   const isWashed = getIsWashed(yearDelta);
 

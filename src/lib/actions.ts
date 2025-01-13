@@ -13,8 +13,8 @@ export const getRecentlyPlayedTracks = async (
 
 export const getTopItems = async ({
   session,
-  timeRange = "short_term",
-  limit = 50,
+  timeRange = "medium_term",
+  limit = 24,
   type,
 }: {
   session: AuthSession;
@@ -28,37 +28,53 @@ export const getTopItems = async ({
   );
 };
 
-export const getAvgAgeInYears = async ({ tracks } : { tracks: Track[] }) => {
-  const parseDate = (dateStr: string): Date => {
+export const getAvgAgeInYears = async ({ tracks }: { tracks: Track[] }) => {
+  const parseDate = (dateStr: string): Date | null => {
     const [year, month, day] = dateStr.split("-").map(Number);
-    return new Date(year, month - 1, day);
+
+    if (!year) return null; // Year is mandatory
+
+    // Default missing values to January (month) and 1st (day)
+    const parsedMonth = month || 1; // Default to January
+    const parsedDay = day || 1; // Default to the 1st of the month
+
+    const date = new Date(year, parsedMonth - 1, parsedDay); // Month is zero-based
+    return isNaN(date.getTime()) ? null : date; // Check for invalid Date
   };
-  // Sum of all release dates in milliseconds
+
   let totalReleaseDateMillis = 0;
   let albumCount = 0;
 
-  // Iterate through all tracks
   for (const track of tracks) {
     const album = track.album;
-    if (album && album.release_date) {
+    if (album?.release_date) {
       const releaseDate = parseDate(album.release_date);
-      totalReleaseDateMillis += releaseDate.getTime();
-      albumCount++;
+      if (releaseDate) {
+        totalReleaseDateMillis += releaseDate.getTime();
+        albumCount++;
+      }
     }
   }
-  // Calculate the average release date in milliseconds
-  const averageReleaseDateMillis = totalReleaseDateMillis / albumCount;
 
-  // Convert back to Date object
+  // Guard against division by zero
+  if (albumCount === 0) {
+    return null; // No valid albums to calculate an average
+  }
+
+  const averageReleaseDateMillis = totalReleaseDateMillis / albumCount;
   const averageReleaseDate = new Date(averageReleaseDateMillis);
 
-  // Calculate the delta in years from today
+  // Guard against invalid averageReleaseDate
+  if (isNaN(averageReleaseDate.getTime())) {
+    return null; // Invalid average date
+  }
+
   const today = new Date();
   const deltaInMilliseconds = today.getTime() - averageReleaseDate.getTime();
   const millisecondsInYear = 1000 * 60 * 60 * 24 * 365.25; // Accounting for leap years
   const deltaInYears = deltaInMilliseconds / millisecondsInYear;
 
-  return Math.floor(deltaInYears);
+  return Math.floor(deltaInYears); // Always return a number, even if it's 0
 };
 
 export const getUserName = async ({ session }: { session: AuthSession }) => {
